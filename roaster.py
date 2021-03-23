@@ -4,7 +4,6 @@ import sqlite3
 conn = sqlite3.connect('rosterdb.sqlite')
 cur = conn.cursor()
 
-# Do some setup
 cur.executescript('''
 DROP TABLE IF EXISTS User;
 DROP TABLE IF EXISTS Member;
@@ -34,7 +33,6 @@ if len(fname) < 1:
 #   [ "Charley", "si110", 1 ],
 #   [ "Mea", "si110", 0 ],
 
-# Open and read JSON file
 str_data = open(fname).read()
 json_data = json.loads(str_data)
 
@@ -44,7 +42,6 @@ for entry in json_data:
     title = entry[1]
     role = entry[2]
 
-# print contents of file to ensure the values have been properly extracted
     print((name, title, role))
 
     cur.execute('''INSERT OR IGNORE INTO User (name)
